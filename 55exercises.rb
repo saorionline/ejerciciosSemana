@@ -20,7 +20,7 @@ print repetidor('a', 1),"\n"
 print repetidor('b', 2),"\n"
 print repetidor('c', 3),"\n"
 
-#Write a Ruby program which accept the radius of the circle: The perimeter is 31.41592 The area is 78.53981
+#Write a Ruby program  which accept the radius of the circle: The perimeter is 31.41592 The area is 78.53981
 
 radio = 5.0
 perimetro = 0.0
