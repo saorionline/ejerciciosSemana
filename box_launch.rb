@@ -6,7 +6,7 @@ class Box
     SPARE = '/'
     GUTTER = '-'
 
-    attr_accesor :lauches, :remaining_pins
+    attr_accessor :lauches, :remaining_pins
 
     def first_launch
         launches.first
@@ -61,4 +61,5 @@ class Box
             launches.join("|").gsub("0", GUTTER)
         end
     end
+end
 end

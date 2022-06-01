@@ -1,3 +1,5 @@
+require_relative './bonus.rb'
+require_relative './box_launch.rb'
 require_relative "./adding_up.rb"
 require_relative "./box_launch.rb"
 
