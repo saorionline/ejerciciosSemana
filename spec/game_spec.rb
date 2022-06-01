@@ -13,5 +13,15 @@ describe 'super_bowling' do
     context "bonus scores"
         context "strike" do
             before do
-                @round boxes 
-                
+                round @launch
+                @box = @competitor.boxes.first
+            end
+            
+            it "should record a strike when 10 pins fall in one launch" do
+                expect(@box.strike?).to be true
+            end
+
+            it "should add bonus to score when competitor launch a strike" do
+                expect(@competitor.score).to eql 46
+            end
+        end

@@ -1,23 +1,25 @@
 require_relative "./adding_up.rb"
+require_relative "./box_launch.rb"
 
-# Cada juego consta de 10 casillas con el último lanzamiento dando una oportunidad más
+=begin
+Cada juego consta de 10 casillas con el último lanzamiento dando una oportunidad más
 
-# Cuando se calcula el puntaje total sólo se cuentan los casillas enteros
+Cuando se calcula el puntaje total sólo se cuentan los casillas enteros
 
-# El tablero del puntaje puede ser visualizado en cualquier momento
+El tablero del puntaje puede ser visualizado en cualquier momento
 
-# Nuevo juego con 6 integrantes en el equipo 
+Nuevo juego con 6 integrantes en el equipo 
 
+Seeds:
 tournament = Tournament.new "Saori", "Lorena", "Daniel", "Nicolás"
 
-# Grabar un bowl para el jugador actual
+Grabar un bowl para el jugador actual
 
 tournament.round 10 # strike
 tournament.round 6; tournament.round 4 #spare
 
-tournament.points
+tournament.scoreboard
 
-=begin
 Bitácora de lanzamientos
 
 Casilla 1, ball 1: 8 pins
@@ -73,7 +75,7 @@ class Tournament
         jugadores[indice_jugadores]
     end
 
-    def play(pins)
+    def round(pins)
         return "El juego terminó, miren el puntaje final" if finished?
         jugador_actual.bowl(pins)
         puts "#{jugador_actual.name} le dio a #{pins} pines"
