@@ -1,3 +1,5 @@
+require_relative "./adding_up.rb"
+
 # Cada juego consta de 10 casillas con el último lanzamiento dando una oportunidad más
 
 # Cuando se calcula el puntaje total sólo se cuentan los casillas enteros
@@ -6,14 +8,14 @@
 
 # Nuevo juego con 6 integrantes en el equipo 
 
-juego = Juego.new "Saori", "Lorena", "Daniel", "Nicolás", "Roberto"
+tournament = Tournament.new "Saori", "Lorena", "Daniel", "Nicolás"
 
 # Grabar un bowl para el jugador actual
 
-juego.play 10 # strike
-juego.play 6; juego.play 4 #spare
+tournament.round 10 # strike
+tournament.round 6; tournament.round 4 #spare
 
-juego.scoreboard
+tournament.points
 
 =begin
 Bitácora de lanzamientos
@@ -23,6 +25,7 @@ Casilla 1, ball 2: 0 pins
 Casilla 2, ball 1: 7 pins
 Casilla 2, ball 2: 2 pins
 
+
 El puntaje: hasta el momento sería
 Casilla one: 8 + 0 = 8
 Casilla two: 7 + 2 = 9
@@ -30,17 +33,27 @@ Casilla two: 7 + 2 = 9
 Puntaje total = 17
 =end
 
-class Juego
-    MAX_PLAYERS = 6
+class Tournament
+    MAX_COMPETITORS = 6
 
-    attr_reader :jugadores, :indice_jugadores
+    attr_reader :competitors, :competitor_list
 
     def initialize(*names)
-        raise ArgumentError.new("Deben jugar 6 o menos personas") if names.size > MAX_PLAYERS
+        raise ArgumentError.new("Deben jugar 6 o menos personas") if names.size > MAX_COMPETITORS
         @jugadores = []
         names.each {|name| @jugadores << Jugador.new(name)}
         reset_player
         announce_player
+    end
+
+    #It's nice to create just one function to reset and announce
+
+    def reset_player
+        @indice_jugadores = 0
+    end
+
+    def announce_player
+        puts "#{jugador_actual.name} to bowl"
     end
 
     def switch_player
@@ -51,19 +64,11 @@ class Juego
         end
     end
 
-    def announce_player
-        puts "#{jugador_actual.name} to bowl"
-    end
-
     def nextPlayer
-        switch_player if jugador_actual.casillas.last.finished?ç
+        switch_player if jugador_actual.casillas.last.finished?
         announce_player unless finished?
     end
-
-    def reset_player
-        @indice_jugadores = 0
-    end
-
+ 
     def jugador_actual
         jugadores[indice_jugadores]
     end
@@ -74,31 +79,32 @@ class Juego
         puts "#{jugador_actual.name} le dio a #{pins} pines"
         nextPlayer
     end
+end
 
-    #Print player, scoreboard
+  
 
-    class Jugador
-        MAX_FRAMES = 10
+   
+   
 
-        attr_reader :name, :casillas
+   
 
-        def initialized(name)
-            @name = name
-            @casillas = []
-            nueva_casilla
-        end
-        
-        def lanzamiento(pins)
-            nueva_casilla if casilla_actual.finished?
-            casilla_actual.bowl(pins)
-        end
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
-        def lanza_sigui_dos(numero_casilla)
-            siguientes_dos_casillas = casillas[(numero_casilla + 1)..(numero_casilla + 2)]
-            lanza_sigui_dos = siguientes_dos_casillas.inject([]) {|lanzamiento, casillas| lanzamiento += casillas.lanzamiento if frame.finished?} || []
-            lanza_sigui_dos.take(2)
-        end
-    end
+   
+   
+   
+   
+   
+   
 
 
 
