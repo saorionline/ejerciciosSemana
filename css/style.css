@@ -1,0 +1,33 @@
+body {
+    font-family: sans-serif;
+    box-sizing: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+nav > ul{
+    list-style-type: none;
+    margin:0;
+    color: #1A4A61;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+aside > p {
+    display: grid;
+    grid-template-columns: 200px;
+    grid-row-gap: 5px;
+    justify-items: start;
+    color: #CD6667;
+    text-align: center;
+}
+
+main > article {
+    display-legacy: inline-block;
+    color: #339A99;
+    text-align: center;
+}
+
